@@ -10,7 +10,7 @@ public class Card {
     // Constructor
     public Card(Suit suit, int value) {
         if (suit == null) {
-            throw new IllegalStateException("Suit was null and must not be null.");
+            throw new NullPointerException("Suit was null and must not be null.");
         }
         if (value < 1 || value > 13) {
             throw new IllegalArgumentException("Value was " + value + " and must be at least 1 and at most 13.");

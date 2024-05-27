@@ -14,6 +14,9 @@ public class Tekst {
 
     // Methods
     public void tilføj(String tekstLinje) {
+        if (tekstLinje == null) {
+            throw new NullPointerException("tekstLinje var null og må ikke være null.");
+        }
         tekstLinjer.add(tekstLinje);
     }
 
