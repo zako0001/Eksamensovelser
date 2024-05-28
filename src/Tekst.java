@@ -21,12 +21,12 @@ public class Tekst {
     }
 
     public int findAntalUnikke1() {
-        // Simpel metode, der benytter noget, vi ikke har lært om.
+        // Brug af Set
         return new HashSet<>(tekstLinjer).size();
     }
 
     public int findAntalUnikke2() {
-        // Længere metode, der ikke benytter noget, vi ikke har lært om.
+        // Uden brug af Set
         List<String> unikkeTekstLinjer = new ArrayList<>();
         for (String tekstLinje : tekstLinjer) {
             if (!unikkeTekstLinjer.contains(tekstLinje)) {

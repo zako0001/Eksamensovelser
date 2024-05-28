@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -73,5 +75,29 @@ public class Main {
             && motherboard.connectSataDrive(new SataDrive())
             && !motherboard.connectSataDrive(new SataDrive());
         System.out.println("Motherboard & SataDrive virker: " + assertion9);
+
+        // Test af BMI
+        BMI undervægtig = new BMI(182, 60);
+        BMI overvægtig = new BMI(182, 90);
+        BMI normalvægtig = new BMI(182, 75);
+        boolean assertion10 =
+            undervægtig.isUnderweight() && !undervægtig.isOverweight() && !undervægtig.isNormalWeight() &&
+            !overvægtig.isUnderweight() && overvægtig.isOverweight() && !overvægtig.isNormalWeight() &&
+            !normalvægtig.isUnderweight() && !normalvægtig.isOverweight() && normalvægtig.isNormalWeight();
+        System.out.println("BMI virker:                     " + assertion10);
+
+        // Test af Article
+        Article article = new Article(
+            "En overskrift",
+            "Denne tekst er skrevet med det formål at være lang. En lang tekst er en tekst med mange ord. At teksten har mange ord, gør, at teksten også har mange tegn; det er sgu vigtigt for en tekst, der skal være så lang som muligt. \"Reservedel\" er et langt ord.",
+            "Zacharias Koefoed"
+        );
+        boolean assertion11 = article.getLongestWord1().length() == 10 && article.getLongestWord2().length() == 10;
+        System.out.println("Article virker:                 " + assertion11);
+
+        // Test af User
+        User user = new User("Zacharias Koefoed");
+        boolean assertion12 = user.validUserID();
+        System.out.println("User virker:                    " + assertion12);
     }
 }
