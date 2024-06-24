@@ -1,13 +1,13 @@
 import java.util.Random;
 
-public class User {
+public class User1 {
 
     // Attributes
     private String fullName;
     private String userID;
 
     // Constructor
-    public User(String fullName) {
+    public User1(String fullName) {
         this.fullName = fullName;
         try {
             createUserID();

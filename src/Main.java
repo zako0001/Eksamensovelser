@@ -101,7 +101,7 @@ public class Main {
         System.out.println("Article virker:                 " + assertion11);
 
         // Test af User (øvelse 12)
-        User user = new User("Zacharias Koefoed");
+        User1 user = new User1("Zacharias Koefoed");
         boolean assertion12 = user.validUserID();
         System.out.println("User virker:                    " + assertion12);
 
@@ -122,12 +122,12 @@ public class Main {
                 landskab.isLandscape();
         System.out.println("Image virker:                   " + assertion14);
 
-        // Test af Square, Circle og Shape (øvelse 15)
+        // Test af Square, Circle & Shape (øvelse 15)
         Shape[] shapes = {new Circle(5.65), new Square(9.99)};
         for (Shape shape : shapes) {
             System.out.println(shape.getArea());
         }
-        boolean assertion15 = Math.abs(200 - shapes[0].getArea() - shapes[1].getArea()) < 1.0;
+        boolean assertion15 = Math.abs(200.0 - shapes[0].getArea() - shapes[1].getArea()) < 1.0;
         System.out.println("Square, Circle & Shape virker:  " + assertion15);
 
         // Test af ExamQuestion (øvelse 16)
@@ -141,6 +141,59 @@ public class Main {
         } catch (FileNotFoundException ignored) {}
         boolean assertion16 = new File("questions.txt").exists();
         System.out.println("ExamQuestion virker:            " + assertion16);
+
+        // Test af Candidate & Election (øvelse 17)
+        Election election = new Election();
+        election.addCandidate(new Candidate("Donald Trump", "Republican Party", 10500));
+        election.addCandidate(new Candidate("Joseph Biden", "Democratic Party", 10500));
+        election.addCandidate(new Candidate("Michael Mouse", "Democratic Party", 1000));
+        boolean assertion17 = election.getTotalVotes() == 22000 && election.getCandidatesFromParty("Democratic Party").size() == 2;
+        System.out.println("Candidate & Election virker:    " + assertion17);
+
+        // Test af Media, Audio & Video (øvelse 18)
+        Audio audio = new Audio("Me singing in the shower", 4, 20);
+        Video video = new Video("My dog's 2nd birthday", 120, 16, 9);
+        List<Media> media = new ArrayList<>();
+        media.add(audio);
+        media.add(video);
+        PrintStream ps = null;
+        try {
+            ps = new PrintStream("mediainfo.txt");
+        } catch (FileNotFoundException ignored) {}
+        for (Media m : media) {
+            String last = "";
+            if (m instanceof Audio a) {
+                ps.println("---Audio---");
+                last = "Loudness: " + a.getLoudness();
+            } else if (m instanceof Video v) {
+                ps.println("---Video---");
+                last = "Aspect ratio: " + v.getAspectRatio();
+            }
+            ps.println("Name: " + m.getName());
+            ps.println("Duration: " + m.getDuration());
+            ps.println(last);
+            ps.println();
+        }
+        boolean assertion18 = new File("mediainfo.txt").exists();
+        System.out.println("Media, Audio & Video virker:    " + assertion18);
+
+        // Test af Dream (øvelse 19)
+        List<Dream> dreams = new ArrayList<>();
+        dreams.add(new Dream(10, 6, 2024, 3.5, Dream.Type.NIGHTMARE));
+        dreams.add(new Dream(20, 4, 2024, 10.9, Dream.Type.PROBLEM_SOLVING));
+        dreams.add(new Dream(15, 4, 2024, 9.6, Dream.Type.PROBLEM_SOLVING));
+        dreams.add(new Dream(16, 4, 2024, 10.9, Dream.Type.NEUTRAL));
+        dreams.add(new Dream(21, 4, 2024, 9.6, Dream.Type.NEUTRAL));
+        dreams.sort(Dream.DATE_ORDER);
+        boolean assertion19 = dreams.get(0).isPleasant() && dreams.get(1).isPleasant() && !dreams.get(2).isPleasant() && !dreams.get(3).isPleasant() && !dreams.get(4).isPleasant();
+        System.out.println("Dream virker:                   " + assertion19);
+
+        // Test af DataObject, User & Student (øvelse 20)
+        List<DataObject> dataObjects = List.of(new User2(1, "Odin", "Kong_Odin"), new Student(2, "Thor", "thor@valhalla.dk"));
+        for (DataObject dataObject : dataObjects) {
+            System.out.println(Arrays.toString(dataObject.getData()));
+        }
+        System.out.println("DataObject, User & Student ikke testet.");
 
         // Test af HogwartsStudent (tirsdag)
         List<HogwartsStudent> hs = new ArrayList<>();

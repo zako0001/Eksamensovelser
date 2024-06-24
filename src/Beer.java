@@ -5,7 +5,6 @@ public class Beer {
     private double alcoholPercentage;
     private int price;
 
-
     // Constructor
     public Beer(String name) {
         this.name = name;
